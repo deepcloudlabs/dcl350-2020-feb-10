@@ -22,58 +22,48 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig implements WebMvcConfigurer {
-    @Value("${major.version}")
-    private String majorVersion;
-    @Value("${minor.version}")
-    private String minorVersion;
-    @Value("${timestamp}")
-    private long timestamp;
-    @Value("${server.servlet.context-path}")
-    private String contextPath;
-    @Value("${spring.mvc.servlet.path}")
-    private String servletPath;
+	@Value("${major.version}")
+	private String majorVersion;
+	@Value("${minor.version}")
+	private String minorVersion;
+	@Value("${timestamp}")
+	private long timestamp;
+	@Value("${server.servlet.context-path}")
+	private String contextPath;
+	@Value("${spring.mvc.servlet.path}")
+	private String servletPath;
 
-    @Value("${server.address}")
-    private String host;
+	@Value("${server.address}")
+	private String host;
 
-    @Value("${server.port}")
-    private long port;
+	@Value("${server.port}")
+	private long port;
 
-    @Bean
-    public Docket api(ServletContext servletContext) {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build()
-                .host(host.concat(":").concat(Long.toString(port)))
-                .pathProvider(new RelativePathProvider(servletContext) {
-                    @Override
-                    public String getApplicationBasePath() {
-                        return contextPath;
-                    }
-                })
-                .apiInfo(apiInfo());
-    }
+	@Bean
+	public Docket api(ServletContext servletContext) {
+		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
+				.paths(PathSelectors.any()).build().host(host.concat(":").concat(Long.toString(port)))
+				.pathProvider(new RelativePathProvider(servletContext) {
+					@Override
+					public String getApplicationBasePath() {
+						return contextPath;
+					}
+				}).apiInfo(apiInfo());
+	}
 
-    private ApiInfo apiInfo() {
+	private ApiInfo apiInfo() {
 
-        return new ApiInfoBuilder()
-                .title("Market Service")
-                .description("<b>Client FrontEnd API</b><br /><br />Updated: [" + (new Date(timestamp)).toString() + " ]"
-                        + " <script>document.title = \"Market Service\";"
-                        + " document.getElementById('header').remove();"
-                        + "</script>")
-                .version(majorVersion + "." + minorVersion)
-                .build();
-    }
+		return new ApiInfoBuilder().title("Market Service")
+				.description("<b>Client FrontEnd API</b><br /><br />Updated: [" + (new Date(timestamp)).toString()
+						+ " ]" + " <script>document.title = \"Market Service\";"
+						+ " document.getElementById('header').remove();" + "</script>")
+				.version(majorVersion + "." + minorVersion).build();
+	}
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("swagger-ui.html")
-                .addResourceLocations("classpath:/META-INF/resources/");
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
 
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");
-    }
+		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+	}
 }

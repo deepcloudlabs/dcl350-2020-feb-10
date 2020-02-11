@@ -11,7 +11,9 @@ import com.example.hr.entity.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 	Optional<Employee> findOneByIdentityNo(String identity);
+
 	Employee findTopByOrderBySalaryDesc();
-	@Query(value = "select e from Employees e where e.salary between :from and :to",nativeQuery = true)
-	List<Employee> findBySalaryBetween(double from,double to);
+
+	@Query(value = "select e from Employees e where e.salary between :from and :to", nativeQuery = true)
+	List<Employee> findBySalaryBetween(double from, double to);
 }
