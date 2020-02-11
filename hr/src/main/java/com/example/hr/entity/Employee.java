@@ -2,8 +2,11 @@ package com.example.hr.entity;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity
 @Table(name = "employees")
+@DynamicUpdate
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +19,7 @@ public class Employee {
 	private String iban;
 	private int birthYear;
 	@Lob
-	@Column(columnDefinition = "largeblob")
+	@Column(columnDefinition = "longblob")
 	private byte[] photo;
 	private boolean fulltime;
 	@Enumerated
