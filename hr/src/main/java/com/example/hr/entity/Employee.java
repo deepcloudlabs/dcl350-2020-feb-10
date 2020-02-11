@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.example.validation.Iban;
+import com.example.validation.TcKimlikNo;
+
 @Entity
 @Table(name = "employees")
 @DynamicUpdate
@@ -12,10 +15,12 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "identity", unique = true, nullable = false)
+	@TcKimlikNo(message = "")
 	private String identityNo;
 	private String fullname;
 	private double salary;
 	@Column(unique = true, nullable = false)
+	@Iban
 	private String iban;
 	private int birthYear;
 	@Lob
