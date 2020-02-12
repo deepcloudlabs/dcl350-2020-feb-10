@@ -1,6 +1,15 @@
 package com.example.hr.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -17,11 +26,14 @@ public class Employee {
 	@Column(name = "identity", unique = true, nullable = false)
 	@TcKimlikNo(message = "")
 	private String identityNo;
+	@Size(min=3)
 	private String fullname;
+	@Min(2300)
 	private double salary;
 	@Column(unique = true, nullable = false)
 	@Iban
 	private String iban;
+	@Min(1960)
 	private int birthYear;
 	@Lob
 	@Column(columnDefinition = "longblob")
