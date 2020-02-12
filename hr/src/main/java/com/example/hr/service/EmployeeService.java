@@ -28,7 +28,6 @@ public class EmployeeService {
 		return empRepo.findAll(PageRequest.of(page, size)).getContent();
 	}
 
-	@Transactional
 	public Employee addEmployee(Employee emp) {
 		emp.setId(null);
 		String identity = emp.getIdentityNo();
@@ -39,7 +38,6 @@ public class EmployeeService {
 		return empRepo.save(emp);
 	}
 
-	@Transactional
 	public Employee updateEmployee(Employee emp) {
 		String identity = emp.getIdentityNo();
 		Optional<Employee> employee = empRepo.findOneByIdentityNo(identity);
@@ -55,6 +53,7 @@ public class EmployeeService {
 			managedEmployee.setIban(emp.getIban());
 		managedEmployee.setSalary(emp.getSalary());
 		managedEmployee.setFulltime(emp.isFulltime());
+		empRepo.save(managedEmployee);
 		return managedEmployee;
 	}
 

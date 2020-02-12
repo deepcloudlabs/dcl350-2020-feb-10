@@ -1,45 +1,30 @@
 package com.example.hr.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.example.validation.Iban;
 import com.example.validation.TcKimlikNo;
 
-@Entity
-@Table(name = "employees")
-@DynamicUpdate
+@Document(collection = "employees")
 public class Employee {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column(name = "identity", unique = true, nullable = false)
+	private String id;
 	@TcKimlikNo(message = "")
 	private String identityNo;
 	@Size(min=3)
 	private String fullname;
 	@Min(2300)
 	private double salary;
-	@Column(unique = true, nullable = false)
 	@Iban
 	private String iban;
 	@Min(1960)
 	private int birthYear;
-	@Lob
-	@Column(columnDefinition = "longblob")
-	private byte[] photo;
+	private String photo;
 	private boolean fulltime;
-	@Enumerated
 	private Department department;
 
 	public Employee() {
@@ -56,12 +41,20 @@ public class Employee {
 		this.department = department;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public String getIdentityNo() {
@@ -102,14 +95,6 @@ public class Employee {
 
 	public void setBirthYear(int birthYear) {
 		this.birthYear = birthYear;
-	}
-
-	public byte[] getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(byte[] photo) {
-		this.photo = photo;
 	}
 
 	public boolean isFulltime() {
