@@ -45,6 +45,17 @@ public class Employee {
 	public Employee() {
 	}
 
+	public Employee(String identityNo, @Size(min = 3) String fullname, @Min(2300) double salary, String iban,
+			@Min(1960) int birthYear, boolean fulltime, Department department) {
+		this.identityNo = identityNo;
+		this.fullname = fullname;
+		this.salary = salary;
+		this.iban = iban;
+		this.birthYear = birthYear;
+		this.fulltime = fulltime;
+		this.department = department;
+	}
+
 	public Long getId() {
 		return id;
 	}
