@@ -21,8 +21,11 @@ public class SimpleLotteryService implements LotteryService {
 	@Value("${lottery.min}") private int min;
 	@Value("${lottery.max}") private int max;
 	@Value("${lottery.size}") private int size;
+	@Value("${server.address}") private String host;
+	@Value("${server.port}") private int port;
 	@Override
 	public List<Integer> draw() {
+		System.err.println(host+":"+port);
 		return ThreadLocalRandom.current()
 				   .ints(min,max)
 				   .distinct()
