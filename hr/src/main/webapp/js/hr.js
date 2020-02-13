@@ -109,7 +109,7 @@ class HrViewModel {
     }
 
     find() {
-        fetch(`${AppConfig.BASE_URL}/employees/${this.employee.identity()}`)
+        fetch(`${AppConfig.BASE_URL}/employees/${this.employee.identityNo()}`)
             .then(res => res.json())
             .then(res => {
                 if ('errorCode' in res) throw res; else return res;
@@ -125,7 +125,7 @@ class HrViewModel {
     }
 
     removeAtRow = (emp) => {
-        fetch(`${AppConfig.BASE_URL}/employees/${emp.identity}`,
+        fetch(`${AppConfig.BASE_URL}/employees/${emp.identityNo}`,
             {
                 method: 'DELETE'
             })
@@ -137,7 +137,7 @@ class HrViewModel {
                 this.fileData().dataUrl(toSrcImage(emp.photo));
                 this.employee.update(emp);
                 let emps = this.employees()
-                    .filter(row => emp.identity != row.identity);
+                    .filter(row => emp.identityNo != row.identityNo);
                 this.employees(emps);
             })
             .catch(err => {
@@ -146,7 +146,7 @@ class HrViewModel {
     }
 
     remove() {
-        fetch(`${AppConfig.BASE_URL}/employees/${this.employee.identity()}`,
+        fetch(`${AppConfig.BASE_URL}/employees/${this.employee.identityNo()}`,
             {
                 method: 'DELETE'
             })

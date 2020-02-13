@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Crypto Currency Admin Page</title>
+    <title>HR UI</title>
     <style type="text/css">
         @import url("css/bootstrap.css");
         @import url("css/bootstrap-theme.css");
@@ -41,7 +41,7 @@
         <div class="panel-body">
             <div class="form-group">
                 <label for="identityNo">Identity No</label>
-                <input id="identityNo" data-bind="value: employee.identity" type="text" class="form-control"/>
+                <input id="identityNo" data-bind="value: employee.identityNo" type="text" class="form-control"/>
             </div>
             <div class="form-group">
                 <label for="name">Full Name</label>
@@ -96,10 +96,10 @@
                 <button data-bind="click : update, disable: !employee.isEmployeeValid()" class="btn btn-warning">
                     Update
                 </button>
-                <button data-bind="click : remove, disable: !employee.identity.isValid()" class="btn btn-danger">
+                <button data-bind="click : remove, disable: !employee.identityNo.isValid()" class="btn btn-danger">
                     Delete
                 </button>
-                <button data-bind="click : find, disable: !employee.identity.isValid()" class="btn btn-success">Find
+                <button data-bind="click : find, disable: !employee.identityNo.isValid()" class="btn btn-success">Find
                 </button>
                 <button data-bind="click : findAll" class="btn btn-success">Find All</button>
             </div>
@@ -130,7 +130,7 @@
                 <tr data-bind="click: $root.copyRow">
                     <td data-bind="text: $index()+1"></td>
                     <td><img class="thumbnail" style="width: 32px;" data-bind="attr: {src: emp.photo}"></td>
-                    <td data-bind="text: emp.identity"></td>
+                    <td data-bind="text: emp.identityNo"></td>
                     <td data-bind="text: emp.fullname"></td>
                     <td data-bind="text: emp.salary"></td>
                     <td data-bind="text: emp.iban"></td>

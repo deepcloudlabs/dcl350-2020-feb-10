@@ -5,7 +5,7 @@ class Employee {
         this.fullname = ko.observable("Jack Bauer").extend({required: true, minLength: 3});
         this.fulltime = ko.observable(true);
         this.iban = ko.observable("TR").extend({required: true, iban: true});
-        this.identity = ko.observable("24420422662").extend({required: true, tcKimlikNo: true})
+        this.identityNo = ko.observable("24420422662").extend({required: true, tcKimlikNo: true})
         this.photo = ko.observable(AppConfig.NO_IMAGE);
         this.salary = ko.observable(3000).extend({required: true, min: 3000});
     }
