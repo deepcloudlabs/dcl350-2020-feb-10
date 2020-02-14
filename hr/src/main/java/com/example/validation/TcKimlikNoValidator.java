@@ -3,8 +3,7 @@ package com.example.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class TcKimlikNoValidator implements 
-        ConstraintValidator<TcKimlikNo, String>{
+public class TcKimlikNoValidator implements ConstraintValidator<TcKimlikNo, String> {
 
 	@Override
 	public void initialize(TcKimlikNo arg0) {
@@ -12,7 +11,8 @@ public class TcKimlikNoValidator implements
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		if (value==null) return false;
+		if (value == null)
+			return false;
 		if (!value.matches("^\\d{11}$")) {
 			return false;
 		}

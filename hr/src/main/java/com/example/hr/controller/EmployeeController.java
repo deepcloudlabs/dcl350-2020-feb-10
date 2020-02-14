@@ -33,34 +33,28 @@ public class EmployeeController {
 	private EmployeeService employeeSrv;
 
 	@GetMapping("{identity}")
-	public Employee getEmployeeByIdentity(
-			 @TcKimlikNo @PathVariable String identity) {
+	public Employee getEmployeeByIdentity(@TcKimlikNo @PathVariable String identity) {
 		return employeeSrv.findEmployeeByIdentity(identity);
 	}
 
 	// http://localhost:7001/hr/api/v1/employees?page=10&size=25
 	@GetMapping(params = { "page", "size" })
-	public List<Employee> getAllEmployees(
-			@RequestParam @Min(0) int page, 
-			@RequestParam @Min(10) @Max(100)int size) {
+	public List<Employee> getAllEmployees(@RequestParam @Min(0) int page, @RequestParam @Min(10) @Max(100) int size) {
 		return employeeSrv.findAllEmployee(page, size);
 	}
 
 	@PostMapping
-	public Employee createEmployee(
-			@RequestBody @Validated Employee emp) {
+	public Employee createEmployee(@RequestBody @Validated Employee emp) {
 		return employeeSrv.addEmployee(emp);
 	}
 
 	@PutMapping
-	public Employee updateEmployee(
-			@RequestBody @Validated Employee emp) {
+	public Employee updateEmployee(@RequestBody @Validated Employee emp) {
 		return employeeSrv.updateEmployee(emp);
 	}
 
 	@DeleteMapping("{identity}")
-	public Employee removeEmployeeByIdentity(
-			@TcKimlikNo @PathVariable String identity) {
+	public Employee removeEmployeeByIdentity(@TcKimlikNo @PathVariable String identity) {
 		return employeeSrv.removeEmployeeByIdentity(identity);
 	}
 }

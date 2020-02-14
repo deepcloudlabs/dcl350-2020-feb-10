@@ -10,7 +10,7 @@ import javax.validation.Payload;
 
 @Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy=IbanValidator.class)
+@Constraint(validatedBy = IbanValidator.class)
 public @interface Iban {
 	String message() default "{validation.iban}";
 

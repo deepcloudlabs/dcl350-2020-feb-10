@@ -82,7 +82,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <div type="text" id="filedrag"
+                <div id="filedrag"
                      data-bind="event: { drop: function (data,e) { $root.insertFile(e,data);}, dragover: function(data,e){ $root.dragover(e);}	}"
                      class="drop-zone">
                     Drop the photo here!
@@ -139,7 +139,7 @@
                         <span class="label label-warning" data-bind="visible: !emp.fulltime">PART TIME</span>
                     </td>
                     <td data-bind="text: emp.birthYear"></td>
-                    <td><span class="label label-info" data-bind="text: emp.department"/></td>
+                    <td><span class="label label-info" data-bind="text: emp.department"></span></td>
                     <td>
                         <button data-bind="click: $root.removeAtRow"
                                 data-i18n="buttonDelete"
@@ -149,8 +149,8 @@
                 <!-- /ko -->
                 <tr>
                     <td colspan="3"></td>
-                    <td>Average: <span data-bind="text: avgSalary"/></td>
-                    <td>Total: <span data-bind="text: totalSalary"/></td>
+                    <td>Average: <span data-bind="text: avgSalary"></span></td>
+                    <td>Total: <span data-bind="text: totalSalary"></span></td>
                     <td colspan="5"></td>
                 </tr>
                 </tbody>

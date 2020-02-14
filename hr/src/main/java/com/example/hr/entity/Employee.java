@@ -15,7 +15,7 @@ public class Employee {
 	private String id;
 	@TcKimlikNo(message = "")
 	private String identityNo;
-	@Size(min=3)
+	@Size(min = 3)
 	private String fullname;
 	@Min(2300)
 	private double salary;

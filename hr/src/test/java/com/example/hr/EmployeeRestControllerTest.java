@@ -37,6 +37,7 @@ public class EmployeeRestControllerTest {
 	@MockBean
 	private EmployeeRepository empRepo;
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void listTwoEmployees() throws Exception {
 		Employee jack = new Employee("93016289514", "Jack Bauer", 400_000, "TR160006214856147784314666", 1962, false,

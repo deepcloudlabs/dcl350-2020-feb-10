@@ -3,8 +3,7 @@ package com.example.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class IbanValidator implements 
-     ConstraintValidator<Iban, String>{
+public class IbanValidator implements ConstraintValidator<Iban, String> {
 	private static final long MAX = 999999999;
 	private static final long MODULUS = 97;
 
@@ -29,11 +28,9 @@ public class IbanValidator implements
 		String reformattedCode = code.substring(4) + code.substring(0, 4);
 		long total = 0;
 		for (int i = 0; i < reformattedCode.length(); i++) {
-			int charValue = Character
-					.getNumericValue(reformattedCode.charAt(i));
+			int charValue = Character.getNumericValue(reformattedCode.charAt(i));
 			if (charValue < 0 || charValue > 35) {
-				throw new Exception("Invalid Character[" + i + "] = '"
-						+ charValue + "'");
+				throw new Exception("Invalid Character[" + i + "] = '" + charValue + "'");
 			}
 			total = (charValue > 9 ? total * 100 : total * 10) + charValue;
 			if (total > MAX) {
