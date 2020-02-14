@@ -20,9 +20,9 @@ public class LotteryRestController {
 	public LotteryRestController(LotteryService lotteryService) {
 		this.lotteryService = lotteryService;
 	}
-	
+
 	@GetMapping
-	public List<Integer> getNumbers(){
+	public List<Integer> getNumbers() {
 		return lotteryService.draw();
 	}
 }

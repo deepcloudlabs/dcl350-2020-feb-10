@@ -10,29 +10,28 @@ import org.springframework.stereotype.Service;
 
 import com.example.lottery.service.LotteryService;
 
-
 // curl localhost:5001/lottery/api/v1/actuator/refresh 
 // -X POST -d {} -H "Content-Type: application/json"
-
 
 @Service
 @RefreshScope
 public class SimpleLotteryService implements LotteryService {
-	@Value("${lottery.min}") private int min;
-	@Value("${lottery.max}") private int max;
-	@Value("${lottery.size}") private int size;
-	@Value("${server.address}") private String host;
-	@Value("${server.port}") private int port;
+	@Value("${lottery.min}")
+	private int min;
+	@Value("${lottery.max}")
+	private int max;
+	@Value("${lottery.size}")
+	private int size;
+	@Value("${server.address}")
+	private String host;
+	@Value("${server.port}")
+	private int port;
+
 	@Override
 	public List<Integer> draw() {
-		System.err.println(host+":"+port);
-		return ThreadLocalRandom.current()
-				   .ints(min,max)
-				   .distinct()
-				   .limit(size)
-				   .sorted()
-				   .boxed()
-				   .collect(Collectors.toList());
+		System.err.println(host + ":" + port);
+		return ThreadLocalRandom.current().ints(min, max).distinct().limit(size).sorted().boxed()
+				.collect(Collectors.toList());
 	}
 
 }
