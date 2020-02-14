@@ -18,9 +18,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class BinanceWebSocketClientService implements WebSocketHandler {
 	@Autowired
 	private WebSocketClient client;
-	@Autowired private ObjectMapper mapper;
-	@Autowired private ApplicationEventPublisher publisher;
-	
+	@Autowired
+	private ObjectMapper mapper;
+	@Autowired
+	private ApplicationEventPublisher publisher;
+
 	@PostConstruct
 	public void connect() {
 		client.doHandshake(this, "wss://stream.binance.com:9443/ws/btcusdt@trade");

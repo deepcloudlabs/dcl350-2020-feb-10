@@ -12,10 +12,9 @@ public class BinanceRestConsumer {
 	@Scheduled(fixedRate = 5_000)
 	public void call() {
 		RestTemplate rt = new RestTemplate();
-		Ticker ticker = rt.getForEntity(
-				"https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT", 
-				  Ticker.class).getBody();
+		Ticker ticker = rt.getForEntity("https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT", Ticker.class)
+				.getBody();
 		System.out.println(ticker);
 	}
-	
+
 }

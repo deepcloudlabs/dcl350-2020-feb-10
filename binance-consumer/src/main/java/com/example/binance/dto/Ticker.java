@@ -20,7 +20,6 @@ public class Ticker {
 		this.price = price;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Ticker [symbol=" + symbol + ", price=" + price + "]";

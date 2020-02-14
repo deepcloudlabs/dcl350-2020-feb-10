@@ -2,19 +2,18 @@ package com.example.binance.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.binance.entity.Trade;
-import com.example.binance.repository.TradeRepository;
 
 @Service
-public class TradeService {
+public class TradeKafkaProducer {
 	@Autowired
-	private TradeRepository tradeRepo;
+	private KafkaTemplate<String, Trade> kf;
 
 	@EventListener
-	public void elma(Trade trade) {
-		tradeRepo.save(trade);
-		System.out.println(trade);
+	public void listenTrade(Trade trade) {
+		kf.send("trades", trade.getSymbol(), trade);
 	}
 }
